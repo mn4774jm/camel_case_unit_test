@@ -2,7 +2,6 @@
 import re
 pattern = re.compile(r'\W')
 
-
 def main():
     display_banner()
     sentence = get_input()
@@ -32,7 +31,9 @@ def camelCase_convert(sentence):
             variable_name += word_split[i].capitalize()
     mo = pattern.search(variable_name)
     if mo is not None:
-        return 'Warning: There may be an issue in created variable name'
+        print('Warning: There may be an issue in created variable name. Special characters have been removed.')
+        clean_name = re.compile(r'[!@#$%^&*()\.,?\\/]').sub('', variable_name)
+        return clean_name
     else:
         return variable_name
 
